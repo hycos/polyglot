@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: Polyglot
+Class-Path: /Users/julian/Repositories/sol/cnetworktrans/target/cnetworktrans-1.0-SNAPSHOT-jar-with-dependencies.jar /Users/julian/Repositories/sol/cnetworkparser/target/cnetworkparser-1.0-SNAPSHOT-jar-with-dependencies.jar /Users/julian/Repositories/sol/cnetwork/target/cnetwork-1.0-SNAPSHOT-jar-with-dependencies.jar /Users/julian/Repositories/inmemantlr/target/inmemantlr-1.0-SNAPSHOT-jar-with-dependencies.jar
+
