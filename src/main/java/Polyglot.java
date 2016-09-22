@@ -106,6 +106,19 @@ public class Polyglot {
         }
 
         InputFormat informat = InputFormat.getFormat(inputFormat);
+        OutputFormat oformat = OutputFormat.getFormat(outputFormat);
+
+
+        String out = translate(inputFile, outputFile, informat, oformat);
+
+        assert(out != null);
+
+        System.out.println(out);
+
+    }
+
+    public static String translate(String inputFile, String outputFile, InputFormat informat, OutputFormat oformat) {
+
 
         System.out.println("Get constraint network parser for " + informat.getName() + " ...");
         CnetworkParser cparser = new CnetworkParser(informat);
@@ -123,9 +136,9 @@ public class Polyglot {
 
         System.out.println("... done");
 
-        OutputFormat oformat = OutputFormat.getFormat(outputFormat);
-
         SmtTranslator translator = oformat.getTranslator();
+
+        assert(translator != null);
 
         try {
             translator.setConstraintNetwork(cn);
@@ -142,7 +155,7 @@ public class Polyglot {
             System.exit(-1);
         }
 
-        if(cmd.hasOption("ofil")) {
+        if(outputFile != null && !outputFile.isEmpty()) {
             try {
                 FileUtils.fileWrite(outputFile, outputString);
             } catch (IOException e) {
@@ -150,10 +163,10 @@ public class Polyglot {
                 System.exit(-1);
             }
         } else {
-            System.out.println(outputString);
+            return outputString;
         }
 
-        System.exit(0);
-
+        return null;
     }
+
 }
