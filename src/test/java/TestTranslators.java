@@ -22,10 +22,8 @@ public class TestTranslators {
 
     @Test
     public void testKaluza() {
-
-        String trans = Polyglot.translate(getPath("kaluza1.z3"), "/tmp/kaluza1.sol", InputFormat.Z3STR2, OutputFormat.SOL);
-
-        logger.info(trans);
+        //String trans0 = Polyglot.translate(getPath("kaluza1.z3"), "/tmp/kaluza1.sol", InputFormat.Z3STR2, OutputFormat.SOL);
+        String trans1 = Polyglot.translate(getPath("kaluza2.z3"), "/tmp/kaluza2.sol", InputFormat.Z3STR2, OutputFormat.SOL);
     }
 
 }
