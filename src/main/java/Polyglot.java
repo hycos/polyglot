@@ -1,5 +1,7 @@
 import org.apache.commons.cli.*;
 import org.codehaus.plexus.util.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.snt.cnetwork.core.ConstraintNetwork;
 import org.snt.cnetworkparser.core.CnetworkParser;
 import org.snt.cnetworkparser.core.InputFormat;
@@ -10,6 +12,8 @@ import org.snt.cnetworktrans.lang.SmtTranslator;
 import java.io.IOException;
 
 public class Polyglot {
+
+    final static Logger LOGGER = LoggerFactory.getLogger(Polyglot.class);
 
     public static void main (String [] args) {
 
@@ -58,9 +62,6 @@ public class Polyglot {
                 .argName("ofil").valueSeparator()
                 .required(false)
                 .build();
-
-
-
 
         options.addOption(ifrm);
         options.addOption(ofrm);
@@ -136,6 +137,7 @@ public class Polyglot {
 
         System.out.println("... done");
 
+
         SmtTranslator translator = oformat.getTranslator();
 
         assert(translator != null);
@@ -155,6 +157,7 @@ public class Polyglot {
             System.exit(-1);
         }
 
+        assert(outputString != null);
         if(outputFile != null && !outputFile.isEmpty()) {
             try {
                 FileUtils.fileWrite(outputFile, outputString);
@@ -162,11 +165,12 @@ public class Polyglot {
                 System.err.print("Could not write output to " + outputFile);
                 System.exit(-1);
             }
-        } else {
-            return outputString;
         }
 
-        return null;
+        if(outputString != null)
+            return outputString;
+        else
+            return null;
     }
 
 }
