@@ -9,7 +9,7 @@ import java.io.File;
 
 public class TestTranslators {
 
-    final static Logger logger = LoggerFactory.getLogger(TestTranslators.class);
+    final static Logger LOGGER = LoggerFactory.getLogger(TestTranslators.class);
 
 
     private static ConstraintNetwork cn = null;
@@ -30,7 +30,7 @@ public class TestTranslators {
     public void testCVC() {
         //String trans0 = Polyglot.translate(getPath("kaluza1.z3"), "/tmp/kaluza1.sol", InputFormat.Z3STR2, OutputFormat.SOL);
         String trans1 = Polyglot.translate(getPath("kaluza3.z3"), "/tmp/kaluza3.cvc", InputFormat.Z3STR2, OutputFormat.CVC4);
-        logger.info(trans1);
+        LOGGER.info(trans1);
     }
 }
 
