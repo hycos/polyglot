@@ -144,7 +144,7 @@ public class Polyglot {
         assert(translator != null);
 
         try {
-            translator.setConstraintNetwork(cn);
+            translator.setConstraintNetworkBuilder(cn);
         } catch (NotSupportedException e) {
             System.err.print(e.getMessage());
             System.exit(-1);
