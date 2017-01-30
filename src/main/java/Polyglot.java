@@ -1,14 +1,15 @@
 import org.apache.commons.cli.*;
-import org.codehaus.plexus.util.FileUtils;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.snt.cnetwork.core.ConstraintNetwork;
-import org.snt.cnetworkparser.core.CnetworkParser;
+import org.snt.cnetworkparser.core.ConstraintNetworkParser;
 import org.snt.cnetworkparser.core.InputFormat;
 import org.snt.cnetworktrans.core.OutputFormat;
 import org.snt.cnetworktrans.exceptions.NotSupportedException;
 import org.snt.cnetworktrans.lang.SmtTranslator;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Polyglot {
@@ -90,12 +91,12 @@ public class Polyglot {
         String inputFormat = cmd.getOptionValue("ifrm");
         String outputFormat = cmd.getOptionValue("ofrm");
 
-        if(!FileUtils.fileExists(inputFile)) {
+        if(!new File(inputFile).exists()) {
             System.err.println("Input file " + inputFile + " does not exist");
             System.exit(-1);
         }
 
-        if(cmd.hasOption("ofil") && FileUtils.fileExists(outputFile)) {
+        if(cmd.hasOption("ofil") && !new File(outputFile).exists()) {
             System.err.println("Output Ffile " + outputFile + " does already exist");
             System.exit(-1);
         }
@@ -122,7 +123,7 @@ public class Polyglot {
 
 
         System.out.println("Get constraint network parser for " + informat.getName() + " ...");
-        CnetworkParser cparser = new CnetworkParser(informat);
+        ConstraintNetworkParser cparser = new ConstraintNetworkParser(informat);
 
 
         if(cparser == null) {
@@ -133,7 +134,7 @@ public class Polyglot {
 
         System.out.println("Get constraint network for file " + inputFile + " ...");
 
-        ConstraintNetwork cn = cparser.getCNfromFile(inputFile);
+        ConstraintNetwork cn = cparser.getConstraintNetworkFromFile(inputFile);
 
         System.out.println("... done");
 
@@ -160,7 +161,8 @@ public class Polyglot {
         assert(outputString != null);
         if(outputFile != null && !outputFile.isEmpty()) {
             try {
-                FileUtils.fileWrite(outputFile, outputString);
+                FileUtils.writeStringToFile(new File(outputFile), outputString,
+                        "UTF-8", true);
             } catch (IOException e) {
                 System.err.print("Could not write output to " + outputFile);
                 System.exit(-1);
