@@ -2,12 +2,15 @@ import org.apache.commons.cli.*;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.snt.cnetwork.core.ConstraintNetwork;
+import org.snt.cnetwork.core.ConstraintNetworkBuilder;
+import org.snt.cnetwork.exception.EUFInconsistencyException;
 import org.snt.cnetworkparser.core.ConstraintNetworkParser;
 import org.snt.cnetworkparser.core.InputFormat;
 import org.snt.cnetworktrans.core.OutputFormat;
 import org.snt.cnetworktrans.exceptions.NotSupportedException;
 import org.snt.cnetworktrans.lang.SmtTranslator;
+import org.snt.inmemantlr.exceptions.AstProcessorException;
+import org.snt.inmemantlr.exceptions.CompilationException;
 
 import java.io.File;
 import java.io.IOException;
@@ -123,7 +126,13 @@ public class Polyglot {
 
 
         System.out.println("Get constraint network parser for " + informat.getName() + " ...");
-        ConstraintNetworkParser cparser = new ConstraintNetworkParser(informat);
+        ConstraintNetworkParser cparser = null;
+        try {
+            cparser = new ConstraintNetworkParser(informat);
+        } catch (CompilationException e) {
+            System.err.print(e.getMessage());
+            System.exit(-1);
+        }
 
 
         if(cparser == null) {
@@ -134,7 +143,12 @@ public class Polyglot {
 
         System.out.println("Get constraint network for file " + inputFile + " ...");
 
-        ConstraintNetwork cn = cparser.getConstraintNetworkFromFile(inputFile);
+        ConstraintNetworkBuilder cn = null;
+        try {
+            cn = cparser.getConstraintNetworkBuilderFromFile(inputFile);
+        } catch (EUFInconsistencyException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("... done");
 
@@ -145,7 +159,7 @@ public class Polyglot {
 
         try {
             translator.setConstraintNetworkBuilder(cn);
-        } catch (NotSupportedException e) {
+        } catch (NotSupportedException  e) {
             System.err.print(e.getMessage());
             System.exit(-1);
         }
@@ -153,7 +167,7 @@ public class Polyglot {
         String outputString = null;
         try {
             outputString = translator.translate();
-        } catch (NotSupportedException e) {
+        } catch (NotSupportedException | AstProcessorException e) {
             System.err.print(e.getMessage());
             System.exit(-1);
         }
