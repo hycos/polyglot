@@ -1,7 +1,7 @@
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.snt.cnetwork.core.ConstraintNetwork;
+import org.snt.cnetwork.core.graph.ConstraintNetwork;
 import org.snt.cnetworkparser.core.InputFormat;
 import org.snt.cnetworktrans.core.OutputFormat;
 

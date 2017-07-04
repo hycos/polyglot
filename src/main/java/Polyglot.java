@@ -2,7 +2,7 @@ import org.apache.commons.cli.*;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.snt.cnetwork.core.ConstraintNetworkBuilder;
+import org.snt.cnetwork.core.graph.ConstraintNetworkBuilder;
 import org.snt.cnetwork.exception.EUFInconsistencyException;
 import org.snt.cnetworkparser.core.ConstraintNetworkParser;
 import org.snt.cnetworkparser.core.InputFormat;
@@ -99,7 +99,7 @@ public class Polyglot {
             System.exit(-1);
         }
 
-        if(cmd.hasOption("ofil") && !new File(outputFile).exists()) {
+        if(cmd.hasOption("ofil") && new File(outputFile).exists()) {
             System.err.println("Output Ffile " + outputFile + " does already exist");
             System.exit(-1);
         }
