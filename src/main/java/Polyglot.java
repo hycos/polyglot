@@ -1,16 +1,16 @@
+import com.github.hycos.cnetwork.core.graph.ConstraintNetworkBuilder;
+import com.github.hycos.cnetwork.exception.EUFInconsistencyException;
+import com.github.hycos.cnetworkparser.core.ConstraintNetworkParser;
+import com.github.hycos.cnetworkparser.core.InputFormat;
+import com.github.hycos.cnetworktrans.core.OutputFormat;
+import com.github.hycos.cnetworktrans.exceptions.NotSupportedException;
+import com.github.hycos.cnetworktrans.lang.SmtTranslator;
 import org.apache.commons.cli.*;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.snt.cnetwork.core.graph.ConstraintNetworkBuilder;
-import org.snt.cnetwork.exception.EUFInconsistencyException;
-import org.snt.cnetworkparser.core.ConstraintNetworkParser;
-import org.snt.cnetworkparser.core.InputFormat;
-import org.snt.cnetworktrans.core.OutputFormat;
-import org.snt.cnetworktrans.exceptions.NotSupportedException;
-import org.snt.cnetworktrans.lang.SmtTranslator;
-import org.snt.inmemantlr.exceptions.AstProcessorException;
 import org.snt.inmemantlr.exceptions.CompilationException;
+import org.snt.inmemantlr.exceptions.ParseTreeProcessorException;
 
 import java.io.File;
 import java.io.IOException;
@@ -167,7 +167,7 @@ public class Polyglot {
         String outputString = null;
         try {
             outputString = translator.translate();
-        } catch (NotSupportedException | AstProcessorException e) {
+        } catch (NotSupportedException | ParseTreeProcessorException e) {
             System.err.print(e.getMessage());
             System.exit(-1);
         }
