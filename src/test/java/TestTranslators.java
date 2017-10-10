@@ -47,7 +47,7 @@ public class TestTranslators {
     public void testCVC() {
         //String trans0 = Polyglot.translate(getPath("kaluza1.z3"), "/tmp/kaluza1.sol", InputFormat.Z3STR2, OutputFormat.SOL);
         String trans1 = Polyglot.translate(getPath("kaluza3.z3"), "/tmp/kaluza3.cvc", InputFormat.Z3STR2, OutputFormat.CVC4);
-        LOGGER.info(trans1);
+        //LOGGER.info(trans1);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class TestTranslators {
         //String trans0 = Polyglot.translate(getPath("kaluza1.z3"), "/tmp/kaluza1.sol", InputFormat.Z3STR2, OutputFormat.SOL);
         String trans1 = Polyglot.translate(getPath("beasties10.z3"),
                 "/tmp/kaluza3.cvc", InputFormat.Z3STR2, OutputFormat.CVC4);
-        LOGGER.info(trans1);
+        //LOGGER.info(trans1);
     }
 
 
