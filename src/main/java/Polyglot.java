@@ -15,8 +15,8 @@
  * specific language governing permissions and limitations under the Licence.
  */
 
+import com.github.hycos.cnetwork.api.labelmgr.exception.InconsistencyException;
 import com.github.hycos.cnetwork.core.graph.ConstraintNetworkBuilder;
-import com.github.hycos.cnetwork.exception.EUFInconsistencyException;
 import com.github.hycos.cnetworkparser.core.ConstraintNetworkParser;
 import com.github.hycos.cnetworkparser.core.InputFormat;
 import com.github.hycos.cnetworktrans.core.OutputFormat;
@@ -163,7 +163,7 @@ public class Polyglot {
         ConstraintNetworkBuilder cn = null;
         try {
             cn = cparser.getConstraintNetworkBuilderFromFile(inputFile);
-        } catch (EUFInconsistencyException e) {
+        } catch (InconsistencyException e) {
             e.printStackTrace();
         }
 

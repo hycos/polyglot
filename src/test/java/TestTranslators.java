@@ -15,12 +15,13 @@
  * specific language governing permissions and limitations under the Licence.
  */
 
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import com.github.hycos.cnetwork.core.graph.ConstraintNetwork;
 import com.github.hycos.cnetworkparser.core.InputFormat;
 import com.github.hycos.cnetworktrans.core.OutputFormat;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
