@@ -15,6 +15,9 @@
  * specific language governing permissions and limitations under the Licence.
  */
 
+
+package com.github.hycos.polyglot;
+
 import com.github.hycos.cnetwork.api.labelmgr.exception.InconsistencyException;
 import com.github.hycos.cnetwork.core.graph.ConstraintNetworkBuilder;
 import com.github.hycos.cnetworkparser.core.ConstraintNetworkParser;
